@@ -1,440 +1,652 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="fav_icon2.ico">
-    <title>cbt.canaanlandmodelschools.org</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* {
-            margin: 0;
-            padding: 0;
-             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /*background: url('img/templogo.jpg') no-repeat center center;
-            //content: "";*/
-               
-                            
-        }*/
-           body {
-                position: relative;
-                z-index: 1;
-            }
-            body::before {
-                content: "";
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: url('img/templogo1.jpg') no-repeat center center;
-                background-size: 300px 300px; /* adjust as needed*/ 
-                opacity: 0.1; /* watermark transparency */
-                z-index: 0;
-                pointer-events: none;
-                text-align: center 
-                padding: 0;/* allow clicks through*/
-                margin: 0;
-                padding: 0;
-                 background-color: purple;
-                align-items: center;       
-                text-align: center;
-                 box-sizing: border-box;
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            }
-       
-       
-        :root {
-            --primary-color: #008000;
-            --secondary-color: #d90000;
-            --background-color: #f5f5f5;
-            --text-color: #333;
-            --card-bg: white;
-            --header-bg: blue;
-            --header-text: white;
-            --nav-bg: #006400;
-            --input-border: #ddd;
-        }
-       
-        .dark-theme {
-            --primary-color: #4CAF50;
-            --secondary-color: #ff5252;
-            --background-color: #2c2c2c;
-            --text-color: #f0f0f0;
-            --card-bg: #3c3c3c;
-            --header-bg: #2e7d32;
-            --header-text: #f0f0f0;
-            --nav-bg: #1b5e20;
-            --input-border: #555;
-        }
-       
-        body {
-            background-color: var(--background-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            transition: background-color 0.3s, color 0.3s;
-        }
-       
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-          #student-image {
-            width: 75px;
-            height: 75px;
-            border-radius: 50%;
-            display: block;
-            margin: 0 auto;
-            margin-bottom: 10px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard · Canaanland Model Schools</title>
 
-       
-        /* Navigation Bar */
-        nav {
-            background-color: blue; /*var(--nav-bg);*/
-            padding: 15px 0;
-            margin-bottom: 25px;
-            border-radius: 8px;
-        }
-       
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-       
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-       
-        .nav-links li {
-            margin-right: 20px;
-        }
-       
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            padding: 5px 10px;
-            border-radius: 4px;
-        }
-       
-        .nav-links a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-       
-        .theme-toggle {
-            background: none;
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: 20px;
-            margin-left: 15px;
-        }
-       
-        header {
-            background-color: var(--header-bg);
-            color: var(--header-text);
-            padding: 20px;
-            text-align: center;
-            border-radius: 8px;
-            margin-bottom: 25px;
-        }
-       
-        .logo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-       
-        .logo {
-            width: 80px;
-            height: 80px;
-            background-color: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 15px;
-            font-weight: bold;
-            color: var(--primary-color);
-            border: 2px solid var(--secondary-color);
-        }
-       
-        h1 {
-            font-size: 28px;
-            margin-bottom: 5px;
-        }
-       
-        .welcome-message {
-            background-color: var(--card-bg);
-            padding: 15px;
-            border-left: 5px solid var(--secondary-color);
-            margin: 20px 0;
-            font-size: 16px;
-            border-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-       
-        .exam-sections {
-            display: flex;
-            gap: 25px;
-            margin-bottom: 25px;
-        }
-       
-        .exam-section {
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            flex: 1;
-            overflow: hidden;
-        }
-       
-        .section-header {
-            background-color: var(--header-bg);
-            color: var(--header-text);
-            padding: 15px 20px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-       
-        .section-body {
-            padding: 25px;
-        }
-       
-        .instructions {
-            margin-bottom: 20px;
-            /*color: var(--text-color);*/
-             color: red;
-        }
-       
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 20px 0;
-        }
-       
-        input[type="password"] {
-            width: 100%;
-            max-width: 400px;
-            padding: 12px 15px;
-            border: 1px solid var(--input-border);
-            border-radius: 4px;
-            font-size: 16px;
-            margin-bottom: 15px;
-            text-align: center;
-            background-color: var(--card-bg);
-            color: var(--text-color);
-        }
-       
-        .btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
-       
-        .btn:hover {
-            background-color: var(--nav-bg);
-        }
-       
-        .windows-activate {
-            text-align: center;
-            margin-top: 30px;
-            color: var(--text-color);
-            font-size: 14px;
-            padding: 15px;
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-       
-        @media (max-width: 900px) {
-            .exam-sections {
-                flex-direction: column;
-            }
-           
-            .nav-container {
-                flex-direction: column;
-            }
-           
-            .nav-links {
-                margin-top: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-           
-            .nav-links li {
-                margin-bottom: 10px;
-            }
-        }
-       
-        @media (max-width: 600px) {
-            .logo-container {
-                flex-direction: column;
-                text-align: center;
-            }
-           
-            .logo {
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
-           
-            input[type="password"] {
-                width: 90%;
-            }
-        }
-    </style>
+<!-- Firebase compat SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+<style>
+  * { box-sizing: border-box; }
+
+  html, body { margin: 0; padding: 0; min-height: 100vh; }
+
+  body {
+    min-height: 100vh;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #1f1c18;
+    padding: 30px 20px;
+    position: relative;
+    overflow-x: hidden;
+
+    /* Background image behind everything */
+    background-color: #f7efe0;
+    background-image: url('img/background-logo.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  /* Soft overlay so the background image doesn't overpower content */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg,
+                rgba(247, 239, 224, 0.88) 0%,
+                rgba(232, 215, 186, 0.88) 100%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ---------- HEADER ---------- */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 12px;
+    background: rgba(255,255,255,0.94);
+    border: 2px solid #b87c44;
+    border-radius: 14px;
+    padding: 14px 18px;
+    box-shadow: 0 6px 18px rgba(122, 63, 14, 0.12);
+    backdrop-filter: blur(2px);
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+    min-width: 0;
+  }
+  .brand .logo {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #b87c44;
+    padding: 5px;
+    box-shadow: 0 3px 8px rgba(122, 63, 14, 0.18);
+    flex-shrink: 0;
+  }
+  .brand .titles {
+    min-width: 0;
+  }
+  header h1 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #7a3f0e;
+    letter-spacing: 0.3px;
+    line-height: 1.2;
+  }
+  header .user {
+    font-size: 0.78rem;
+    color: #6f6456;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .header-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .seed-btn {
+    padding: 8px 18px;
+    background: #2b6e4e;
+    color: white;
+    border: 2px solid #1f5a3e;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 0.82rem;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 #1a452f;
+    transition: 0.1s;
+    font-family: inherit;
+  }
+  .seed-btn:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #1a452f;
+  }
+  .logout-btn {
+    padding: 8px 18px;
+    background: #8b1a1a;
+    color: white;
+    border: 2px solid #5f0f0f;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 0.82rem;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 #3d0a0a;
+    transition: 0.1s;
+    font-family: inherit;
+  }
+  .logout-btn:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #3d0a0a;
+  }
+
+  /* ---------- CARD ---------- */
+  .card {
+    background: rgba(255, 255, 255, 0.96);
+    border: 2px solid #b87c44;
+    border-radius: 14px;
+    padding: 28px 26px;
+    box-shadow: 0 10px 28px rgba(122, 63, 14, 0.14);
+    backdrop-filter: blur(2px);
+  }
+  .card h2 {
+    margin: 0 0 4px;
+    font-size: 1.15rem;
+    color: #7a3f0e;
+  }
+  .card .hint {
+    font-size: 0.82rem;
+    color: #6f6456;
+    margin-bottom: 22px;
+  }
+
+  label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.85rem;
+    margin: 16px 0 6px;
+    color: #5f3d1a;
+  }
+  select, input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 2px solid #b87c44;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background: #fdfaf5;
+    transition: border-color 0.15s, background 0.15s;
+    font-family: inherit;
+  }
+  select:focus, input:focus {
+    outline: none;
+    border-color: #7a3f0e;
+    background: white;
+  }
+  select:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    background: #f0e8dc;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 640px) {
+    .row { grid-template-columns: 1fr; }
+  }
+
+  .actions {
+    margin-top: 28px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    padding: 12px 30px;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.1s;
+    border: 2px solid;
+    font-family: inherit;
+  }
+  .btn-primary {
+    background: #b55a1a;
+    color: white;
+    border-color: #7d3c0c;
+    box-shadow: 4px 4px 0 #5f2e0a;
+  }
+  .btn-primary:hover:not(:disabled) {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 #5f2e0a;
+  }
+  .btn-secondary {
+    background: #1e2f3f;
+    color: white;
+    border-color: #1a2937;
+    box-shadow: 3px 3px 0 #0f1a24;
+  }
+  .btn-secondary:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #0f1a24;
+  }
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
+
+  .status {
+    margin-top: 18px;
+    padding: 11px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: none;
+  }
+  .status.info    { display: block; background: #bbdefb; color: #0d3b66; }
+  .status.error   { display: block; background: #ffcdd2; color: #8b1a1a; }
+  .status.success { display: block; background: #c8e6c9; color: #1e4a2a; }
+
+  .preview {
+    margin-top: 18px;
+    padding: 12px 16px;
+    background: #1e1a16;
+    color: #e8e0d6;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    word-break: break-all;
+    display: none;
+  }
+  .preview.show { display: block; }
+
+  @media (max-width: 600px) {
+    .brand .logo { width: 52px; height: 52px; }
+    header h1 { font-size: 1.15rem; }
+    header { padding: 12px 14px; }
+  }
+</style>
 </head>
-<body oncontextmenu="return false;">
-    <nav>
-        <div class="nav-container">
-            <ul class="nav-links">
-                <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="#"><i class="fas fa-info-circle"></i> About</a></li>
-                <li><a href="#"><i class="fas fa-question-circle"></i> Help</a></li>
-                <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
-                <li><a href="#"><i class="fas fa-cogs"></i> Services</a></li>
-                <li><a href="index.html"><i class="fas fa-cogs"></i> Sign Out</a></li>
-            </ul>
-            <div>
-                <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon">☀️</i>
-                </button>
-            </div>
-        </div>
-    </nav>
-   
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <!--<div class="logo"><img id="student-image" src="img/templogo.jpg" alt="Profile Picture"></div>-->
-                <div><img src="img/templogo1.jpg" alt="Profile Picture"></div>
-               
-            </div>
-            <p> CANAANLAND MODEL SCHOOLS STUDENTS ACADEMIC RECORDS  SHEET PORTAL </p>
-        </header>
-       
-    
+<body>
 
-             <div class="welcome-message">
-            <div id="student-info">
-            <!--<img id="student-image" src="uploads/<?php echo $image; ?>" alt="Profile Picture">-->
-            <img id="userImage" width="50" height="50" ><br><br>
-        </div >
-            <!--<h2 style="  align-items: center; text-align: center;">Welcome, <?php echo $username; ?>.</h2>-->
-            <h2 style="  align-items: center; text-align: center;" >Welcome, <span id="user"></span></h2>
-  
-        </div>
+<div class="wrap">
 
-             <div class="exam-sections">
-            <div class="exam-section">
-                <div class="section-header">CANAAN LAND COLLEGE JUNIOR SECONDARY</div>
-                <div class="section-body">
-                <p class="instructions"><span style="visibility: hidden; color: red;">----------------------------------------</span>JUNIOR CATEGORY </p>
-                   
-                 <div class="input-group">
-                        
-                       <input type="password" id="input1" placeholder="Junior">
-                        <button onclick="checkInput1()" class="btn">Enter</button>
-                    </div>
-                </div>
-            </div>
-
-              <div class="exam-section">
-                <div class="section-header">CANAAN LAND COLLEGE SENIOR SECONDARY □</div>
-                <div class="section-body">
-                    <p class="instructions"  color: red;><span style="visibility: hidden;">--------------------------------------</span>SENIOR CATEGORY </p>
-                   
-                    <div class="input-group">
-                           <input type="password" id="input2" placeholder="Senior">
-                            <button onclick="checkInput2()"class="btn">Enter</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-       
-        <div class="windows-activate">
-           <p>&copy; portal.canaanlandmodelschools.org. All rights reserved.</p>
-        </div>
+  <header>
+    <div class="brand">
+      <img class="logo" src="img/mainlogo.jpg" alt="Canaanland Model Schools Logo"
+           onerror="this.style.display='none';">
+      <div class="titles">
+        <h1>🏫 Canaanland Model Schools Dashboard</h1>
+        <div class="user" id="userInfo">—</div>
+      </div>
     </div>
-           
 
+    <div class="header-actions">
+      <button class="seed-btn" id="ieBtn" style="background:#0d6b7a; border-color:#0a4f5a; box-shadow:3px 3px 0 #06333a;">📥📤 Import/Export</button>
+      <button class="seed-btn" id="seedBtn">🌱 Seed</button>
+      <button class="logout-btn" id="logoutBtn">Logout</button>
+      <button class="seed-btn" id="exportJsonBtn" style="background:#6f4f2a; border-color:#5f3d1a; box-shadow:3px 3px 0 #4a3316;">📦 Export JSON</button>
+    </div>
+  </header>
 
+  <div class="card">
+    <h2>📄 Report Sheet Lookup</h2>
+    <div class="hint">Select a session, class, and student to open or create their report sheet.</div>
 
+    <label for="sessionSelect">Academic Session</label>
+    <select id="sessionSelect">
+      <option value="">— Select session —</option>
+      <option value="2026-2027">2026 – 2027</option>
+      <option value="2027-2028">2027 – 2028</option>
+      <option value="2028-2029">2028 – 2029</option>
+    </select>
 
+    <div class="row">
+      <div>
+        <label for="classSelect">Class</label>
+        <select id="classSelect" disabled>
+          <option value="">— Select class —</option>
+          <option value="JSS1">JSS 1</option>
+          <option value="JSS2">JSS 2</option>
+          <option value="JSS3">JSS 3</option>
+          <option value="SS1">SS 1</option>
+          <option value="SS2">SS 2</option>
+          <option value="SS3">SS 3</option>
+          <option value="SS4">SS 4</option>
+        </select>
+      </div>
+      <div>
+        <label for="studentSelect">Student Name</label>
+        <select id="studentSelect" disabled>
+          <option value="">— Select student —</option>
+        </select>
+      </div>
+    </div>
 
+    <div class="actions">
+      <button class="btn btn-primary" id="nextBtn" disabled>Next →</button>
+      <button class="btn btn-secondary" id="resetBtn">Reset</button>
+    </div>
 
-<br>
+    <div class="status" id="status"></div>
+    <div class="preview" id="preview"></div>
+  </div>
+
+</div>
 
 <script>
-document.getElementById('user').innerText = sessionStorage.getItem('username');
-document.getElementById('userImage').src = sessionStorage.getItem('image');
+/* ============================================================
+   1. FIREBASE CONFIG (canaanland-records)
+   ============================================================ */
+const firebaseConfig = {
+  apiKey:            "AIzaSyDK0XvZIxCTCD1R4PpB-HBxgncq0-VzIHw",
+  authDomain:        "canaanland-records.firebaseapp.com",
+  databaseURL:       "https://canaanland-records-default-rtdb.firebaseio.com",
+  projectId:         "canaanland-records",
+  storageBucket:     "canaanland-records.firebasestorage.app",
+  messagingSenderId: "927332828173",
+  appId:             "1:927332828173:web:5ece5527489877493c4144",
+  measurementId:     "G-9013EP26HK"
+};
 
-function checkInput1() {
-    if(document.getElementById('input1').value === 'junior') {
-        sessionStorage.setItem('userType', 'junior');
-        window.location.href = 'index_juniors.html';
-    } else {
-        alert('Incorrect input for Junior');
-    }
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+
+/* ============================================================
+   2. SESSION GUARD
+   ============================================================ */
+if (sessionStorage.getItem("wfs_logged_in") !== "true") {
+  window.location.replace("login.html");
 }
 
-function checkInput2() {
-    if(document.getElementById('input2').value === 'senior') {
-        sessionStorage.setItem('userType', 'senior');
-        window.location.href = 'index_seniors.html';
-    } else {
-        alert('Incorrect input for Senior');
-    }
+auth.onAuthStateChanged((user) => {
+  if (!user) {
+    sessionStorage.removeItem("wfs_logged_in");
+    window.location.replace("login.html");
+  } else {
+    document.getElementById("userInfo").textContent = "Signed in as " + user.email;
+  }
+});
+
+/* ============================================================
+   3. USERS ARRAY — CANAANLAND STUDENTS BY CLASS
+   ============================================================ */
+const USERS = {
+  "JSS1": [
+    "afolabi darasmi",
+    "ajiboye aduragbemi",
+    "ayeni oluwatomilola",
+    "akinwale felix",
+    "ayodeji testimony",
+    "owoyemi praise"
+  ],
+  "JSS2": [
+    "felix victor",
+    "alpha trinity",
+    "ogundipe seun",
+    "abiodun darasimi",
+    "ibegbu emmanuel",
+    "ajayi convenant",
+    "fadirepo elizabeth",
+    "david grace",
+    "adepoju kemisola",
+    "ayodele adeife peace",
+    "fakorede fikayo esther",
+    "adewunmi darasimi"
+  ],
+  "JSS3": [
+    "ojo ayomide",
+    "olatise excel",
+    "adewunmi tunmise",
+    "eyebiokin tobiloba",
+    "oluwafemi nifemi",
+    "oluwatuyi olamide",
+    "abiodun praise",
+    "adejumo adenike",
+    "david mercy",
+    "olusanya semilore",
+    "ajibola demilade",
+    "afeni dunusinmi",
+    "bashiru qudus",
+    "owolabi olamide",
+    "ajiboye aanu",
+    "akinola surprise"
+  ],
+  "SS1": [
+    "abdullah kehinde",
+    "abiodun paul",
+    "aluko taiwo",
+    "ojo emmanuel",
+    "olajide daniel",
+    "olanrewaju isreal",
+    "olatunji samuel",
+    "harris peace",
+    "abdullah taiwo",
+    "adejumo azeezat",
+    "ajogo esther",
+    "alonge ayanfeoluwa",
+    "aluko kehinde",
+    "asaolu sefunmi",
+    "ayodele sekemi",
+    "isa godiya",
+    "okunola darasimi",
+    "oyinloye ibironke",
+    "sesan ojo wisdom"
+  ],
+  "SS2": [
+    "john goodness",
+    "ibegbu cynthia",
+    "eniafe success",
+    "isa hauwa kezia",
+    "best daniel",
+    "ogundana henry",
+    "olamide oluwaseun"
+  ],
+  "SS3": [
+    "aluko crown",
+    "adejumo sodiq",
+    "ambrose godwin",
+    "bello george",
+    "fadirepo semilore",
+    "oke david",
+    "adeoye divine",
+    "awobiye eniola",
+    "kayode racheal",
+    "ojo eniope",
+    "ogundipe blessing",
+    "olanrewaju hepzibah",
+    "osasono desola"
+  ],
+  "SS4": [
+    "oltunji emmanuel",
+    "adewunmi nifemi",
+    "oluwafemi oluwatomiwa",
+    "foluso boluwatito",
+    "adejumo azeez",
+    "ajayi sandra",
+    "omole sefunmi",
+    "ayebegan ayobami",
+    "ojo success"
+  ]
+};
+
+/* ============================================================
+   4. DOM REFS
+   ============================================================ */
+const sessionSelect = document.getElementById("sessionSelect");
+const classSelect   = document.getElementById("classSelect");
+const studentSelect = document.getElementById("studentSelect");
+const nextBtn       = document.getElementById("nextBtn");
+const resetBtn      = document.getElementById("resetBtn");
+const logoutBtn     = document.getElementById("logoutBtn");
+const seedBtn       = document.getElementById("seedBtn");
+const statusEl      = document.getElementById("status");
+const previewEl     = document.getElementById("preview");
+const ieBtn         = document.getElementById("ieBtn");
+
+function setStatus(msg, type = "info") {
+  statusEl.className = "status " + type;
+  statusEl.textContent = msg;
+}
+function clearStatus() {
+  statusEl.className = "status";
+  statusEl.textContent = "";
+}
+function updatePreview() {
+  const s = sessionSelect.value;
+  const c = classSelect.value;
+  const n = studentSelect.value;
+  if (s && c && n) {
+    const params = new URLSearchParams({ session: s, class: c, student: n });
+    previewEl.textContent = "➡️ report.html?" + params.toString();
+    previewEl.classList.add("show");
+  } else {
+    previewEl.classList.remove("show");
+  }
+}
+function checkReady() {
+  const ok = sessionSelect.value && classSelect.value && studentSelect.value;
+  nextBtn.disabled = !ok;
+  updatePreview();
 }
 
+/* ============================================================
+   5. DROPDOWN LOGIC
+   ============================================================ */
+sessionSelect.addEventListener("change", () => {
+  clearStatus();
+  if (sessionSelect.value) {
+    classSelect.disabled = false;
+  } else {
+    classSelect.disabled = true;
+  }
+  classSelect.value = "";
+  studentSelect.innerHTML = '<option value="">— Select student —</option>';
+  studentSelect.disabled = true;
+  checkReady();
+});
 
-   // Theme toggle functionality
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = themeToggle.querySelector('i');
-       
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-theme');
-           
-            if (document.body.classList.contains('dark-theme')) {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-            } else {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-            }
-        });
-       
-        // Simple animation for buttons
-        const buttons = document.querySelectorAll('.btn');
-        buttons.forEach(button => {
-            button.addEventListener('mouseenter', () => {
-                button.style.transform = 'translateY(-2px)';
-                button.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
-            });
-           
-            button.addEventListener('mouseleave', () => {
-                button.style.transform = 'translateY(0)';
-                button.style.boxShadow = 'none';
-            });
-        });
-    </script>
+classSelect.addEventListener("change", () => {
+  clearStatus();
+  const cls = classSelect.value;
+  studentSelect.innerHTML = '<option value="">— Select student —</option>';
+
+  if (!cls) {
+    studentSelect.disabled = true;
+    checkReady();
+    return;
+  }
+
+  const list = USERS[cls] || [];
+  if (list.length === 0) {
+    setStatus("⚠️ No students found for " + cls, "error");
+    studentSelect.disabled = true;
+    checkReady();
+    return;
+  }
+
+  list.forEach(name => {
+    const opt = document.createElement("option");
+    opt.value = name;
+    opt.textContent = name;
+    studentSelect.appendChild(opt);
+  });
+  studentSelect.disabled = false;
+  checkReady();
+});
+
+studentSelect.addEventListener("change", checkReady);
+
+/* ============================================================
+   6. NEXT BUTTON → redirect to report.html
+   ============================================================ */
+nextBtn.addEventListener("click", () => {
+  const session = sessionSelect.value;
+  const cls     = classSelect.value;
+  const student = studentSelect.value;
+
+  if (!session || !cls || !student) {
+    setStatus("⚠️ Please complete all selections.", "error");
+    return;
+  }
+
+  const params = new URLSearchParams({
+    session: session,
+    class: cls,
+    student: student
+  });
+
+  setStatus("✅ Opening report sheet…", "success");
+  setTimeout(() => {
+    window.location.href = "report.html?" + params.toString();
+  }, 400);
+});
+
+/* ============================================================
+   7. SEED BUTTON → redirect to seed.html
+   ============================================================ */
+seedBtn.addEventListener("click", () => {
+  window.location.href = "seed.html";
+});
+
+/* ============================================================
+   8. RESET
+   ============================================================ */
+resetBtn.addEventListener("click", () => {
+  sessionSelect.value = "";
+  classSelect.value = "";
+  classSelect.disabled = true;
+  studentSelect.innerHTML = '<option value="">— Select student —</option>';
+  studentSelect.disabled = true;
+  clearStatus();
+  checkReady();
+});
+
+/* ============================================================
+   9. IMPORT EXPORT BUTTON
+   ============================================================ */
+ieBtn.addEventListener("click", () => {
+  window.location.href = "import-export.html";
+});
+
+/* ============================================================
+   10. LOGOUT
+   ============================================================ */
+logoutBtn.addEventListener("click", async () => {
+  if (!confirm("Log out of the portal?")) return;
+  try {
+    await auth.signOut();
+  } catch (e) {
+    console.warn("Sign-out error:", e);
+  }
+  sessionStorage.removeItem("wfs_logged_in");
+  sessionStorage.removeItem("wfs_user_email");
+  sessionStorage.removeItem("wfs_login_time");
+  window.location.replace("login.html");
+});
+
+/* ============================================================
+   11. EXPORT TO JSON
+   ============================================================ */
+document.getElementById("exportJsonBtn").addEventListener("click", () => {
+  window.location.href = "export-json.html";
+});
+
+/* ============================================================
+   12. INIT
+   ============================================================ */
+checkReady();
 </script>
 </body>
 </html>
