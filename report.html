@@ -179,6 +179,19 @@
   table td.calc { background:#f5ede0; font-weight:700; color:#7a3f0e; font-size:0.78rem; }
   table td.grade { font-weight:800; color:#7a3f0e; font-size:0.85rem; }
 
+  /* Highlight the new manual class-average input */
+  table td input.manual-cavg {
+    border-width:1px;
+    border-color:#7a3f0e;
+    background:#fffdf7;
+    font-weight:700;
+    color:#7a3f0e;
+  }
+  table td input.manual-cavg:focus {
+    border-color:#b55a1a;
+    box-shadow:0 0 0 3px rgba(181,90,26,0.2);
+  }
+
   .skills-table td.subj-name { width:200px; }
   .remarks-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
   @media (max-width:700px){ .remarks-grid { grid-template-columns:1fr; } }
@@ -589,7 +602,8 @@ function studentImageCandidates(dbImage) {
 /* ============================================================
    7. BUILD SUBJECT ROWS — A–K COLUMN SCHEMA
    ============================================================ */
-const INPUT_FIELDS = ["A_test1","B_test2","C_test3","E_exam","G_lastTermCum"];
+// Manual inputs: A, B, C, E, G, and now I (class average)
+const INPUT_FIELDS = ["A_test1","B_test2","C_test3","E_exam","G_lastTermCum","I_classAvg"];
 
 function buildSubjectRows() {
   const tbody = $("subjectsBody");
@@ -608,7 +622,7 @@ function buildSubjectRows() {
       <td class="calc" data-calc="F_avgDE">–</td>
       <td><input type="number" data-field="G_lastTermCum" min="0" max="100"></td>
       <td class="calc" data-calc="H_avgFG">–</td>
-      <td class="calc" data-calc="I_classAvg">–</td>
+      <td><input type="number" data-field="I_classAvg"    min="0" max="100" class="manual-cavg" placeholder="Enter"></td>
       <td class="grade" data-calc="J_grade">–</td>
       <td class="calc" data-calc="K_remark" style="font-size:0.72rem;">–</td>
     `;
@@ -617,8 +631,8 @@ function buildSubjectRows() {
 
   tbody.querySelectorAll("input").forEach(inp => {
     inp.addEventListener("input", () => {
+      // Only recalculate D, F, H, J, K — do NOT touch I (manual)
       recalcRow(inp.closest("tr"));
-      recalcClassAverage();
     });
   });
 }
@@ -675,31 +689,7 @@ function recalcRow(tr) {
   setCalc(tr, "J_grade",    hasAny ? grade                  : "–");
   setCalc(tr, "K_remark",   hasAny ? remark                 : "–");
 
-  // Store computed F & H on the row for class average calc
-  tr.dataset.fAvgDE = hasAny ? avgDE.toFixed(2) : "";
-  tr.dataset.hAvgFG = hasAny ? avgFG.toFixed(2) : "";
-}
-
-/**
- * Class Average (Column I) = Sum of all students' F values ÷ number of students.
- * NOTE: In a per-student sheet, we can't know other students' F values here.
- * This computed value here is the CLASS AVERAGE of the CURRENT student's own F
- * across all subjects — this is what fits within a single student's report page.
- * The full school-wide class average across students is computed on the seed/report
- * backend; here we show the per-student average of all F values in the sheet.
- */
-function recalcClassAverage() {
-  const rows = Array.from(document.querySelectorAll("#subjectsBody tr"));
-  let sum = 0, count = 0;
-  rows.forEach(tr => {
-    const v = parseFloat(tr.dataset.fAvgDE);
-    if (!isNaN(v) && v > 0) { sum += v; count++; }
-  });
-  const classAvg = count > 0 ? (sum / count).toFixed(2) : "–";
-  rows.forEach(tr => {
-    const cell = tr.querySelector('[data-calc="I_classAvg"]');
-    if (cell) cell.textContent = classAvg;
-  });
+  // Column I (class average) is now a manual input — nothing to compute here.
 }
 
 /* ============================================================
@@ -792,7 +782,6 @@ function fillForm(data) {
     });
     recalcRow(tr);
   });
-  recalcClassAverage();
 
   fillSkillSection("characterBody", data.characterDevelopment);
   fillSkillSection("practicalBody", data.practicalSkills);
@@ -833,7 +822,6 @@ function collectData() {
     entry.D_testAvg   = tr.querySelector('[data-calc="D_testAvg"]').textContent;
     entry.F_avgDE     = tr.querySelector('[data-calc="F_avgDE"]').textContent;
     entry.H_avgFG     = tr.querySelector('[data-calc="H_avgFG"]').textContent;
-    entry.I_classAvg  = tr.querySelector('[data-calc="I_classAvg"]').textContent;
     entry.J_grade     = tr.querySelector('[data-calc="J_grade"]').textContent;
     entry.K_remark    = tr.querySelector('[data-calc="K_remark"]').textContent;
     subjectsOut[key] = entry;
