@@ -18,13 +18,13 @@
   body {
     min-height: 100vh;
     font-family: 'Segoe UI', Arial, sans-serif;
-    color: #1f1c18;
+    color: #0d1b2a;
     padding: 30px 20px;
     position: relative;
     overflow-x: hidden;
 
     /* Background image behind everything */
-    background-color: #f7efe0;
+    background-color: #e8f4fb;
     background-image: url('img/background-logo.png');
     background-size: cover;
     background-position: center center;
@@ -32,14 +32,16 @@
     background-attachment: fixed;
   }
 
-  /* Soft overlay so the background image doesn't overpower content */
+  /* Soft overlay so the background image doesn't overpower content
+     Uses a blue → fuchsia → aqua tint */
   body::before {
     content: "";
     position: fixed;
     inset: 0;
     background: linear-gradient(135deg,
-                rgba(247, 239, 224, 0.88) 0%,
-                rgba(232, 215, 186, 0.88) 100%);
+                rgba(0, 90, 200, 0.82) 0%,
+                rgba(200, 0, 170, 0.78) 55%,
+                rgba(0, 220, 220, 0.80) 100%);
     z-index: 0;
     pointer-events: none;
   }
@@ -59,11 +61,14 @@
     margin-bottom: 24px;
     flex-wrap: wrap;
     gap: 12px;
-    background: rgba(255,255,255,0.94);
-    border: 2px solid #b87c44;
+    background: rgba(255, 255, 255, 0.97);
+    border: 2px solid #0050c8;              /* blue border */
+    border-top: 6px solid #e0006b;          /* red accent strip */
     border-radius: 14px;
     padding: 14px 18px;
-    box-shadow: 0 6px 18px rgba(122, 63, 14, 0.12);
+    box-shadow:
+      0 6px 18px rgba(0, 60, 160, 0.28),
+      0 0 0 3px rgba(0, 220, 220, 0.35);    /* aqua glow */
     backdrop-filter: blur(2px);
   }
 
@@ -80,9 +85,9 @@
     object-fit: contain;
     border-radius: 50%;
     background: #fff;
-    border: 2px solid #b87c44;
+    border: 3px solid #d100a0;              /* fuchsia ring */
     padding: 5px;
-    box-shadow: 0 3px 8px rgba(122, 63, 14, 0.18);
+    box-shadow: 0 0 0 3px rgba(0, 220, 220, 0.5);
     flex-shrink: 0;
   }
   .brand .titles {
@@ -91,13 +96,14 @@
   header h1 {
     margin: 0;
     font-size: 1.4rem;
-    color: #7a3f0e;
+    color: #0a3a8c;                          /* deep blue title */
     letter-spacing: 0.3px;
     line-height: 1.2;
   }
   header .user {
     font-size: 0.78rem;
-    color: #6f6456;
+    color: #b0005a;                          /* red subtitle */
+    font-weight: 600;
     margin-top: 2px;
     white-space: nowrap;
     overflow: hidden;
@@ -111,58 +117,62 @@
     align-items: center;
   }
 
-  .seed-btn {
+  /* ---------- BUTTONS ---------- */
+  .seed-btn,
+  .logout-btn {
     padding: 8px 18px;
-    background: #2b6e4e;
     color: white;
-    border: 2px solid #1f5a3e;
+    border: 2px solid;
     border-radius: 40px;
     font-weight: 700;
     font-size: 0.82rem;
     cursor: pointer;
-    box-shadow: 3px 3px 0 #1a452f;
     transition: 0.1s;
     font-family: inherit;
+    letter-spacing: 0.3px;
+  }
+  .seed-btn {
+    background: linear-gradient(90deg, #0050c8 0%, #d100a0 100%);
+    border-color: #b0005a;
+    box-shadow: 3px 3px 0 #7a003d;
   }
   .seed-btn:hover {
     transform: translate(2px, 2px);
-    box-shadow: 1px 1px 0 #1a452f;
+    box-shadow: 1px 1px 0 #7a003d;
+    background: linear-gradient(90deg, #0063f0 0%, #e0008a 100%);
   }
   .logout-btn {
-    padding: 8px 18px;
-    background: #8b1a1a;
-    color: white;
-    border: 2px solid #5f0f0f;
-    border-radius: 40px;
-    font-weight: 700;
-    font-size: 0.82rem;
-    cursor: pointer;
-    box-shadow: 3px 3px 0 #3d0a0a;
-    transition: 0.1s;
-    font-family: inherit;
+    background: linear-gradient(90deg, #d10020 0%, #e0006b 100%);
+    border-color: #8b0018;
+    box-shadow: 3px 3px 0 #5c000f;
   }
   .logout-btn:hover {
     transform: translate(2px, 2px);
-    box-shadow: 1px 1px 0 #3d0a0a;
+    box-shadow: 1px 1px 0 #5c000f;
+    background: linear-gradient(90deg, #e00028 0%, #f0007a 100%);
   }
 
   /* ---------- CARD ---------- */
   .card {
-    background: rgba(255, 255, 255, 0.96);
-    border: 2px solid #b87c44;
+    background: rgba(255, 255, 255, 0.97);
+    border: 2px solid #0050c8;
+    border-top: 6px solid #e0006b;
     border-radius: 14px;
     padding: 28px 26px;
-    box-shadow: 0 10px 28px rgba(122, 63, 14, 0.14);
+    box-shadow:
+      0 10px 28px rgba(0, 60, 160, 0.28),
+      0 0 0 3px rgba(0, 220, 220, 0.35);
     backdrop-filter: blur(2px);
   }
   .card h2 {
     margin: 0 0 4px;
     font-size: 1.15rem;
-    color: #7a3f0e;
+    color: #0a3a8c;
   }
   .card .hint {
     font-size: 0.82rem;
-    color: #6f6456;
+    color: #b0005a;
+    font-weight: 600;
     margin-bottom: 22px;
   }
 
@@ -171,27 +181,30 @@
     font-weight: 600;
     font-size: 0.85rem;
     margin: 16px 0 6px;
-    color: #5f3d1a;
+    color: #0050c8;                          /* blue labels */
+    letter-spacing: 0.2px;
   }
   select, input {
     width: 100%;
     padding: 11px 14px;
-    border: 2px solid #b87c44;
+    border: 2px solid #0090c8;               /* blue input border */
     border-radius: 8px;
     font-size: 0.95rem;
-    background: #fdfaf5;
-    transition: border-color 0.15s, background 0.15s;
+    background: #f2fbff;                     /* faint aqua bg */
+    color: #0d1b2a;
+    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
     font-family: inherit;
   }
   select:focus, input:focus {
     outline: none;
-    border-color: #7a3f0e;
+    border-color: #d100a0;                   /* fuchsia on focus */
     background: white;
+    box-shadow: 0 0 0 3px rgba(0, 220, 220, 0.45);   /* aqua glow */
   }
   select:disabled {
     opacity: 0.55;
     cursor: not-allowed;
-    background: #f0e8dc;
+    background: #e0eef5;
   }
 
   .row {
@@ -218,26 +231,29 @@
     transition: 0.1s;
     border: 2px solid;
     font-family: inherit;
+    letter-spacing: 0.3px;
   }
   .btn-primary {
-    background: #b55a1a;
+    background: linear-gradient(90deg, #0050c8 0%, #d100a0 60%, #00c8c8 100%);
     color: white;
-    border-color: #7d3c0c;
-    box-shadow: 4px 4px 0 #5f2e0a;
+    border-color: #b0005a;
+    box-shadow: 4px 4px 0 #7a003d;
   }
   .btn-primary:hover:not(:disabled) {
     transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0 #5f2e0a;
+    box-shadow: 2px 2px 0 #7a003d;
+    background: linear-gradient(90deg, #0063f0 0%, #e0008a 60%, #00e0e0 100%);
   }
   .btn-secondary {
-    background: #1e2f3f;
+    background: linear-gradient(90deg, #00a0a0 0%, #0090c8 100%);
     color: white;
-    border-color: #1a2937;
-    box-shadow: 3px 3px 0 #0f1a24;
+    border-color: #007a7a;
+    box-shadow: 3px 3px 0 #004f4f;
   }
   .btn-secondary:hover {
     transform: translate(2px, 2px);
-    box-shadow: 1px 1px 0 #0f1a24;
+    box-shadow: 1px 1px 0 #004f4f;
+    background: linear-gradient(90deg, #00b8b8 0%, #00a8e0 100%);
   }
   .btn:disabled {
     opacity: 0.5;
@@ -246,6 +262,7 @@
     transform: none;
   }
 
+  /* ---------- STATUS MESSAGES ---------- */
   .status {
     margin-top: 18px;
     padding: 11px 16px;
@@ -254,15 +271,17 @@
     font-weight: 600;
     display: none;
   }
-  .status.info    { display: block; background: #bbdefb; color: #0d3b66; }
-  .status.error   { display: block; background: #ffcdd2; color: #8b1a1a; }
-  .status.success { display: block; background: #c8e6c9; color: #1e4a2a; }
+  .status.info    { display: block; background: #d6e9ff; color: #003a80; border: 1px solid #0050c8; }
+  .status.error   { display: block; background: #ffd6e2; color: #b0003d; border: 1px solid #d100a0; }
+  .status.success { display: block; background: #c9fbfb; color: #006565; border: 1px solid #00a0a0; }
 
+  /* ---------- PREVIEW ---------- */
   .preview {
     margin-top: 18px;
     padding: 12px 16px;
-    background: #1e1a16;
-    color: #e8e0d6;
+    background: #0a1f33;                     /* deep blue-black */
+    color: #7af0f0;                          /* aqua text */
+    border: 1px solid #00a0a0;
     border-radius: 8px;
     font-family: 'Courier New', monospace;
     font-size: 12px;
@@ -293,10 +312,10 @@
     </div>
 
     <div class="header-actions">
-      <button class="seed-btn" id="ieBtn" style="background:#0d6b7a; border-color:#0a4f5a; box-shadow:3px 3px 0 #06333a;">📥📤 Import/Export</button>
+      <button class="seed-btn" id="ieBtn" style="background:linear-gradient(90deg,#0090c8,#00c8c8); border-color:#007a7a; box-shadow:3px 3px 0 #004f4f;">📥📤 Import/Export</button>
       <button class="seed-btn" id="seedBtn">🌱 Seed</button>
       <button class="logout-btn" id="logoutBtn">Logout</button>
-      <button class="seed-btn" id="exportJsonBtn" style="background:#6f4f2a; border-color:#5f3d1a; box-shadow:3px 3px 0 #4a3316;">📦 Export JSON</button>
+      <button class="seed-btn" id="exportJsonBtn" style="background:linear-gradient(90deg,#6a2d8b,#d100a0); border-color:#5a0070; box-shadow:3px 3px 0 #3d004f;">📦 Export JSON</button>
     </div>
   </header>
 

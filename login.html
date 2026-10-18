@@ -20,13 +20,13 @@
     align-items: center;
     justify-content: center;
     font-family: 'Segoe UI', Arial, sans-serif;
-    color: #1f1c18;
+    color: #0d1b2a;
     padding: 24px 16px;
     position: relative;
     overflow-x: hidden;
 
     /* Background image behind everything */
-    background-color: #f7efe0;
+    background-color: #e8f4fb;
     background-image: url('img/computer_lab.png');
     background-size: cover;
     background-position: center center;
@@ -34,14 +34,16 @@
     background-attachment: fixed;
   }
 
-  /* Soft overlay so the background image doesn't overpower the card */
+  /* Soft overlay so the background image doesn't overpower the card
+     Uses a blue → fuchsia → aqua tint */
   body::before {
     content: "";
     position: fixed;
     inset: 0;
     background: linear-gradient(135deg,
-                rgba(247, 239, 224, 0.85) 0%,
-                rgba(232, 215, 186, 0.85) 100%);
+                rgba(0, 90, 200, 0.82) 0%,
+                rgba(200, 0, 170, 0.78) 55%,
+                rgba(0, 220, 220, 0.80) 100%);
     z-index: 0;
     pointer-events: none;
   }
@@ -50,13 +52,16 @@
   .login-card {
     position: relative;
     z-index: 1;
-    background: rgba(255, 255, 255, 0.96);
-    border: 2px solid #b87c44;
+    background: rgba(255, 255, 255, 0.97);
+    border: 2px solid #0050c8;              /* blue border */
+    border-top: 6px solid #e0006b;          /* red accent strip */
     border-radius: 14px;
     padding: 32px 32px 28px;
     width: 100%;
     max-width: 440px;
-    box-shadow: 0 14px 40px rgba(122, 63, 14, 0.22);
+    box-shadow:
+      0 14px 40px rgba(0, 60, 160, 0.35),
+      0 0 0 3px rgba(0, 220, 220, 0.35);    /* aqua glow */
     backdrop-filter: blur(2px);
   }
 
@@ -74,22 +79,23 @@
     display: block;
     border-radius: 50%;
     background: #fff;
-    border: 2px solid #b87c44;
-    box-shadow: 0 4px 12px rgba(122, 63, 14, 0.18);
+    border: 3px solid #d100a0;              /* fuchsia ring */
+    box-shadow: 0 0 0 3px rgba(0, 220, 220, 0.5);
     padding: 6px;
   }
 
   h1 {
     margin: 0 0 4px;
     font-size: 1.45rem;
-    color: #7a3f0e;
+    color: #0a3a8c;                          /* deep blue title */
     text-align: center;
     letter-spacing: 0.5px;
   }
   .subtitle {
     text-align: center;
     font-size: 0.82rem;
-    color: #6f6456;
+    color: #b0005a;                          /* red subtitle */
+    font-weight: 600;
     margin-bottom: 20px;
     letter-spacing: 0.3px;
   }
@@ -99,49 +105,55 @@
     font-weight: 600;
     font-size: 0.82rem;
     margin: 14px 0 6px;
-    color: #5f3d1a;
+    color: #0050c8;                          /* blue labels */
+    letter-spacing: 0.2px;
   }
   input {
     width: 100%;
     padding: 11px 14px;
-    border: 2px solid #b87c44;
+    border: 2px solid #0090c8;               /* blue input border */
     border-radius: 8px;
     font-size: 0.95rem;
-    background: #fdfaf5;
-    transition: border-color 0.15s, background 0.15s;
+    background: #f2fbff;                     /* faint aqua bg */
+    color: #0d1b2a;
+    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
     font-family: inherit;
   }
   input:focus {
     outline: none;
-    border-color: #7a3f0e;
-    background: white;
+    border-color: #d100a0;                   /* fuchsia on focus */
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(0, 220, 220, 0.45);   /* aqua glow */
   }
 
   button {
     width: 100%;
     margin-top: 22px;
     padding: 13px;
-    background: #b55a1a;
-    color: white;
-    border: 2px solid #7d3c0c;
+    background: linear-gradient(90deg, #0050c8 0%, #d100a0 60%, #00c8c8 100%);
+    color: #ffffff;
+    border: 2px solid #b0005a;
     border-radius: 40px;
     font-weight: 700;
     font-size: 1rem;
     cursor: pointer;
-    box-shadow: 4px 4px 0 #5f2e0a;
-    transition: 0.1s;
+    letter-spacing: 0.5px;
+    box-shadow: 4px 4px 0 #7a003d;           /* deep fuchsia shadow */
+    transition: 0.12s;
     font-family: inherit;
   }
   button:hover:not(:disabled) {
     transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0 #5f2e0a;
+    box-shadow: 2px 2px 0 #7a003d;
+    background: linear-gradient(90deg, #0063f0 0%, #e0008a 60%, #00e0e0 100%);
   }
   button:disabled {
-    opacity: 0.6;
+    opacity: 0.65;
     cursor: not-allowed;
     box-shadow: none;
   }
 
+  /* Status messages — mapped to the new palette */
   .status {
     margin-top: 16px;
     padding: 10px 14px;
@@ -151,15 +163,16 @@
     text-align: center;
     display: none;
   }
-  .status.error   { display: block; background: #ffcdd2; color: #8b1a1a; }
-  .status.info    { display: block; background: #bbdefb; color: #0d3b66; }
-  .status.success { display: block; background: #c8e6c9; color: #1e4a2a; }
+  .status.error   { display: block; background: #ffd6e2; color: #b0003d; border: 1px solid #d100a0; }
+  .status.info    { display: block; background: #d6e9ff; color: #003a80; border: 1px solid #0050c8; }
+  .status.success { display: block; background: #c9fbfb; color: #006565; border: 1px solid #00a0a0; }
 
   .footer {
     margin-top: 20px;
     text-align: center;
     font-size: 0.72rem;
-    color: #9a8b78;
+    color: #6b5fa0;                          /* muted blue-violet */
+    letter-spacing: 0.2px;
   }
 
   /* ---------- Responsive ---------- */
